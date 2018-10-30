@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import model.SessionHandler;
 
 public class Pessoa {
+	private String username;
 	private String nome;
 	private String email;
 	private String cpf;
@@ -13,6 +14,7 @@ public class Pessoa {
 	private String telefone;
 	
 	public Pessoa() {
+		this.username = "";
 		this.nome = "";
 		this.email = "";
 		this.cpf = "";
@@ -22,6 +24,7 @@ public class Pessoa {
 	}
 	
 	public Pessoa(
+		String username,
 		String nome,
 		String email,
 		String cpf,
@@ -29,6 +32,7 @@ public class Pessoa {
 		String endereco,
 		String telefone
 	) {
+		this.username = username;
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
@@ -38,6 +42,7 @@ public class Pessoa {
 	}
 	
 	public void criarPessoa(
+		String username,
 		String nome,
 		String email,
 		String cpf,
@@ -49,6 +54,7 @@ public class Pessoa {
 		switch(tipo) {
 			case "Cliente":
 				Cliente cliente = new Cliente(
+					username,
 					nome,
 					email,
 					cpf,
@@ -60,6 +66,7 @@ public class Pessoa {
 				break;
 			case "Profissional":
 				Profissional profissional = new Profissional(
+					username,
 					nome,
 					email,
 					cpf,
@@ -87,6 +94,7 @@ public class Pessoa {
 		return retorno;
 	}
 	
+	public void setUsername(String username) { this.username = username; }
 	public void setNome(String nome) { this.nome = nome; }
 	public void setEmail(String email) { this.email = email; }
 	public void setCpf(String cpf) { this.cpf = cpf; }
@@ -94,6 +102,7 @@ public class Pessoa {
 	public void setEndereco(String endereco) { this.endereco = endereco; }
 	public void setTelefone(String telefone) { this.telefone = telefone; }
 
+	public String getUsername() { return username; }
 	public String getNome() { return nome; }
 	public String getEmail() { return email; }
 	public String getCpf() { return cpf; }

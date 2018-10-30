@@ -6,6 +6,7 @@ public class Cliente extends Pessoa {
 	}
 	
 	public Cliente(
+		String username,
 		String nome,
 		String email,
 		String cpf,
@@ -14,6 +15,7 @@ public class Cliente extends Pessoa {
 		String telefone
 	) {
 		super(
+			username,
 			nome,
 			email,
 			cpf,

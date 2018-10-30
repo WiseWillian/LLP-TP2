@@ -6,6 +6,7 @@ public class Profissional extends Pessoa{
 	}
 	
 	public Profissional(
+		String username,
 		String nome,
 		String email,
 		String cpf,
@@ -14,6 +15,7 @@ public class Profissional extends Pessoa{
 		String telefone
 	) {
 		super(
+			username,
 			nome,
 			email,
 			cpf,

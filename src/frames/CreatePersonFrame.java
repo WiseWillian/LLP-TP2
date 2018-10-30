@@ -13,9 +13,12 @@ import javax.swing.JTextField;
 
 import model.SessionHandler;
 
+import entities.Pessoa;
+
 public class CreatePersonFrame extends JFrame implements ActionListener {
 	
 	private String[] tiposUsuario = { "Cliente", "Profissional", "Administrador" };
+	private JTextField campoUsername;
 	private JTextField campoNome;
 	private JTextField campoEmail;
 	private JTextField campoCpf;
@@ -27,6 +30,7 @@ public class CreatePersonFrame extends JFrame implements ActionListener {
 	public CreatePersonFrame() {
 		super("Criar usuário");
 		
+		this.campoUsername = new JTextField();
 		this.campoNome = new JTextField();
 		this.campoEmail = new JTextField();
 		this.campoCpf = new JTextField();
@@ -35,6 +39,7 @@ public class CreatePersonFrame extends JFrame implements ActionListener {
 		this.campoTelefone = new JTextField();
 		this.campoTipo = new JComboBox<String>(this.tiposUsuario);
 		
+		JLabel labelUsername = new JLabel("Nome de usuário: ");
 		JLabel labelNome = new JLabel("Nome: ");
 		JLabel labelEmail = new JLabel("Email: ");
 		JLabel labelCpf = new JLabel("CPF: ");
@@ -45,12 +50,14 @@ public class CreatePersonFrame extends JFrame implements ActionListener {
 		
 		JButton botaoCriarUsuario = new JButton("Criar");
 		
-		JPanel jPanelPrincipal = new JPanel(new GridLayout(8,2));
+		JPanel jPanelPrincipal = new JPanel(new GridLayout(9,2));
 		
 		campoTipo.setSelectedItem(0);
 		
 		botaoCriarUsuario.addActionListener(this);
 		
+		jPanelPrincipal.add(labelUsername);
+		jPanelPrincipal.add(this.campoUsername);
 		jPanelPrincipal.add(labelNome);
 		jPanelPrincipal.add(this.campoNome);
 		jPanelPrincipal.add(labelEmail);
@@ -77,7 +84,15 @@ public class CreatePersonFrame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		boolean overrideUser = false;
+		
+		if(SessionHandler.usuarioAtual == null) {
+			SessionHandler.usuarioAtual = new Pessoa();
+			overrideUser = true;
+		}
+
 		SessionHandler.usuarioAtual.criarPessoa(
+			this.campoUsername.getText(),
 			this.campoNome.getText(),
 			this.campoEmail.getText(),
 			this.campoCpf.getText(),
@@ -86,5 +101,10 @@ public class CreatePersonFrame extends JFrame implements ActionListener {
 			this.campoTelefone.getText(),
 			this.tiposUsuario[this.campoTipo.getSelectedIndex()]
 		);
+
+		if(overrideUser)
+			SessionHandler.usuarioAtual = null;
+
+		this.dispose();
 	}
 }

@@ -8,6 +8,7 @@ public class Administrador extends Pessoa {
 	}
 	
 	public Administrador(
+		String username,
 		String nome,
 		String email,
 		String cpf,
@@ -16,6 +17,7 @@ public class Administrador extends Pessoa {
 		String telefone
 	) {
 		super(
+			username,
 			nome,
 			email,
 			cpf,
@@ -27,6 +29,7 @@ public class Administrador extends Pessoa {
 	
 	@Override
 	public void criarPessoa(
+		String username,
 		String nome,
 		String email,
 		String cpf,
@@ -38,6 +41,7 @@ public class Administrador extends Pessoa {
 		switch(tipo) {
 			case "Cliente":
 				Cliente cliente = new Cliente(
+					username,
 					nome,
 					email,
 					cpf,
@@ -49,6 +53,7 @@ public class Administrador extends Pessoa {
 				break;
 			case "Profissional":
 				Profissional profissional = new Profissional(
+					username,
 					nome,
 					email,
 					cpf,
@@ -60,6 +65,7 @@ public class Administrador extends Pessoa {
 				break;
 			case "Administrador":
 				Administrador administrador = new Administrador(
+					username,
 					nome,
 					email,
 					cpf,
