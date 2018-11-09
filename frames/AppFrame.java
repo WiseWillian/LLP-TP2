@@ -10,7 +10,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import frames.CreatePersonFrame;
 import model.SessionHandler;
 
 public class AppFrame extends JFrame implements ActionListener {
@@ -24,9 +23,14 @@ public class AppFrame extends JFrame implements ActionListener {
 		this.listaDeUsuarios = new JList<String>(this.modelo);
 		
 		JMenuBar barraDeMenu = new JMenuBar();
+		
 		JMenu menuPessoas = new JMenu("Pessoas");
+		JMenu menuServices = new JMenu("Serviços");
+		
 		JMenuItem itemRecarregarUsuarios = new JMenuItem("Recarregar usuários");
 		JMenuItem itemCriarPessoa = new JMenuItem("Criar Pessoa");
+		JMenuItem itemCreateService = new JMenuItem("Criar serviço");
+
 		
 		itemRecarregarUsuarios.addActionListener(this);
 		
@@ -35,10 +39,18 @@ public class AppFrame extends JFrame implements ActionListener {
 			    new CreatePersonFrame();
 			}
 		});
+
+		itemCreateService.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CreateServiceFrame();
+			}
+		});
 		
 		menuPessoas.add(itemCriarPessoa);
 		menuPessoas.add(itemRecarregarUsuarios);
+		menuServices.add(itemCreateService);
 		barraDeMenu.add(menuPessoas);
+		barraDeMenu.add(menuServices);
 		
 		this.add(listaDeUsuarios);
 		
